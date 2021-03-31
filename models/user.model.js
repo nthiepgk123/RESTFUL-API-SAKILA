@@ -1,10 +1,14 @@
 const db = require('../utils/db');
 
 module.exports = {
-    findOne(user, pass) {
-        return db('User').where('UserName', user);
+    async findOne(user) {
+        const data = await db('User').where('UserName', user);
+        return data[0];
     },
     addUser(User) {
         return db('User').insert(User);
+    },
+    showListUser() {
+        return db.from('User');
     }
 }
