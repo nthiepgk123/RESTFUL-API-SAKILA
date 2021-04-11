@@ -2,8 +2,9 @@ const jwt = require('jsonwebtoken');
 
 module.exports = function (req, res, next) {
     try {
+        const { user, name } = req.body;
         const token = req.headers['x-access-token'];
-
+        console.log(token);
         const decoded = jwt.verify(token, 'SECRET_KEY');
         req.accessTokenPayload = decoded;
         next();
